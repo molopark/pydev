@@ -127,4 +127,4 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-.ash_history/
+.ash_history

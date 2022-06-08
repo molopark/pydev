@@ -15,7 +15,7 @@ nowDatetime = now.strftime('%Y-%m-%d %H:%M:%S')
 print(nowDatetime)
 
 #  데이터 입력
-data.execute("insert into user values( 1, 'kim', 'kim@.com','010-0000-0000','www.com',?)", (nowDatetime,))
+data.execute("insert into user values( 2, 'park', 'park@.com','010-0000-0000','www.com',?)", (nowDatetime,))
 
 # 데이터 조회
 data.execute("select * from user")
