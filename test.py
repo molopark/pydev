@@ -1,5 +1,7 @@
 import sys
 import os
+import openpyxl
+import datetime
 
 def memo(sys):
     fname = "fmemo.txt"
@@ -39,8 +41,30 @@ def search(sys):
             else:
                 print(full_filename)
 
+def makexlsfile():
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws['A1'] = "first data"
+    ws['A2'] = datetime.datetime.now()
+    ws.append([1,2,3])
+    wb.save("sample.xlsx")
+
+def readxlsfile():
+    wb = openpyxl.load_workbook("sample.xlsx")
+    ws = wb.active
+    xlsdata = []
+    for r in range(1,ws.max_row+1):
+        celdata = []
+        for c in range(1,ws.max_column+1):
+            print("r:{}, c:{}, value:{}".format(r,c,ws.cell(r,c).value))
+            celdata.append(ws.cell(r,c).value)
+        xlsdata.append(celdata)
+    print(xlsdata)
+
 if len(sys.argv) > 1:
     if sys.argv[1][0] == '-':
         memo(sys)
     else:
         search(sys)
+
+readxlsfile()
